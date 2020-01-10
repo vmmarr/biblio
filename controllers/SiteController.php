@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Libros;
 
 class SiteController extends Controller
 {
@@ -62,6 +63,27 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionHola($nombre = 'Pepito')
+    {
+        // DAO
+        $fila = Yii::$app->db
+            ->createCommand('SELECT *
+                               FROM libros
+                              WHERE id = 1')
+            ->queryOne();
+        // Query Builder
+        $fila = (new \yii\db\Query())
+            ->from('libros')
+            ->where(['id' => 1])
+            ->one();
+        // ActiveRecord
+        $fila = Libros::findOne(1);
+        return $this->render('hola', [
+            'nombre' => $nombre,
+            'fila' => $fila,
+        ]);
     }
 
     /**
