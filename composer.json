@@ -1,7 +1,12 @@
 {
     "name": "ricpelo/yii2-app-basic",
     "description": "Yii 2 Basic Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
+    "keywords": [
+        "yii2",
+        "framework",
+        "basic",
+        "project template"
+    ],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -28,22 +33,22 @@
         "yiisoft/yii2-faker": "~2.0.0",
         "yiisoft/yii2-shell": "~2.0.2",
         "yiisoft/yii2-apidoc": "dev-project",
-
-        "codeception/codeception": "4.0.x-dev | ^4.0",
-        "codeception/verify": "~0.5.0 || ~1.1.0",
+        "codeception/codeception": "^4.0",
+        "codeception/verify": "dev-patch-1",
         "codeception/specify": "~0.4.6",
         "symfony/browser-kit": ">=2.7 <=4.2.4",
         "codeception/module-filesystem": "^1.0.0",
         "codeception/module-yii2": "^1.0.0",
         "codeception/module-asserts": "^1.0.0",
+        "codeception/module-db": "^1.0",
+        "codeception/module-webdriver": "^1.0",
         "squizlabs/php_codesniffer": "^2.0",
         "yiisoft/yii2-coding-standards": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.8",
         "phpoffice/phpspreadsheet": "^1.1",
         "symfony/dotenv": "^4.0",
         "knplabs/github-api": "^2.11",
-        "php-http/guzzle6-adapter": "^1.1",
-        "codeception/module-db": "^1.0"
+        "php-http/guzzle6-adapter": "^1.1"
     },
     "config": {
         "process-timeout": 1800,
@@ -85,6 +90,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ricpelo/yii2-apidoc"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ricpelo/Verify"
         }
     ]
 }
