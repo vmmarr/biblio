@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Libros;
+use app\models\SaludarForm;
 
 class SiteController extends Controller
 {
@@ -83,6 +84,19 @@ class SiteController extends Controller
         return $this->render('hola', [
             'nombre' => $nombre,
             'fila' => $fila,
+        ]);
+    }
+
+    public function actionSaludar()
+    {
+        $saludarForm = new SaludarForm();
+
+        if ($saludarForm->load(Yii::$app->request->post()) && $saludarForm->validate()) {
+            return $this->redirect(['site/index']);
+        }
+
+        return $this->render('saludar', [
+            'saludarForm' => $saludarForm,
         ]);
     }
 
