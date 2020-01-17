@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Libros;
 use app\models\SaludarForm;
+use yii\web\Request;
 
 class SiteController extends Controller
 {
@@ -68,6 +69,7 @@ class SiteController extends Controller
 
     public function actionHola($nombre = 'Pepito')
     {
+        return Yii::$app->request->hostInfo;
         // DAO
         $fila = Yii::$app->db
             ->createCommand('SELECT *

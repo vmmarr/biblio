@@ -10,4 +10,4 @@ use yii\bootstrap4\Html;
     <div class="form-group">
         <?= Html::submitButton('Enviar', ['class' => 'btn btn-primary']) ?>
     </div>
-<?php ActiveForm::end() ?>
+<?php ActiveForm::end() ?>app\components\Prueba::c
