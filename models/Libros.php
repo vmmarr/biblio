@@ -14,6 +14,14 @@ use Yii;
  */
 class Libros extends \yii\db\ActiveRecord
 {
+    public $provincia;
+
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['provincia']);
+    }
+
+
     /**
      * {@inheritdoc}
      */
