@@ -1,6 +1,8 @@
 <?php
 
+use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
+use yii\bootstrap4\LinkPager;
 
 $this->title = 'Lista de géneros';
 $this->params['breadcrumbs'][] = $this->title;
@@ -9,9 +11,22 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="generos-index">
     <div class="row">
         <div class="col">
+            <?php $form = ActiveForm::begin([
+                'method' => 'get',
+                'action' => ['generos/index'],
+            ]) ?>
+                <?= $form->field($generosSearch, 'denom') ?>
+                <div class="form-group">
+                    <?= Html::submitButton('Buscar', ['class' => 'btn btn-success']) ?>
+                </div>
+            <?php ActiveForm::end() ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <table class="table">
                 <thead>
-                    <th>Género</th>
+                    <th><?= $sort->link('denom') ?></th>
                     <th>Acciones</th>
                 </thead>
                 <tbody>
@@ -42,6 +57,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endforeach ?>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?= LinkPager::widget(['pagination' => $pagination]) ?>
         </div>
     </div>
     <div class="row">

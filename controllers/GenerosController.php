@@ -3,7 +3,10 @@
 namespace app\controllers;
 
 use app\models\Generos;
+use app\models\GenerosSearch;
 use Yii;
+use yii\data\Pagination;
+use yii\data\Sort;
 use yii\db\Query;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -25,13 +28,29 @@ class GenerosController extends Controller
 
     public function actionIndex()
     {
-        $filas = (new Query())
-            ->from('generos')
-            ->orderBy('id')
-            ->all();
-        
+        $generosSearch = new GenerosSearch();
+        $pagination = new Pagination([
+            'pageSize' => 5,
+        ]);
+        $sort = new Sort([
+            'attributes' => [
+                'denom' => [
+                    'label' => 'Denominación',
+                ],
+            ],
+        ]);
+    
+        $filas = $generosSearch->search(
+            Yii::$app->request->queryParams,
+            $pagination,
+            $sort
+        );
+
         return $this->render('index', [
             'filas' => $filas,
+            'generosSearch' => $generosSearch,
+            'pagination' => $pagination,
+            'sort' => $sort,
         ]);
     }
 
