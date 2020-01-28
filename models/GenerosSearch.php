@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 
 class GenerosSearch extends Generos
@@ -19,21 +20,33 @@ class GenerosSearch extends Generos
         return Model::scenarios();
     }
 
-    public function search($params, $pagination, $sort)
+    public function search($params)
     {
         $query = Generos::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+            'sort' => [
+                'attributes' => [
+                    'denom' => [
+                        'label' => 'Denominación',
+                    ],
+                ],
+            ],
+        ]);
 
         $this->load($params);
      
         if (!$this->validate()) {
-            return [];
+            $query->where('1 = 0');
+            return $dataProvider;
         }
 
         $query->andFilterWhere(['ilike', 'denom', $this->denom]);
-        $pagination->totalCount = $query->count();
-        $query->limit($pagination->limit)->offset($pagination->offset);
-        $query->orderBy($sort->orders);
 
-        return $query->all();
+        return $dataProvider;
     }
 }

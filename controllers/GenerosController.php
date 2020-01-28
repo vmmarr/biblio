@@ -29,28 +29,12 @@ class GenerosController extends Controller
     public function actionIndex()
     {
         $generosSearch = new GenerosSearch();
-        $pagination = new Pagination([
-            'pageSize' => 5,
-        ]);
-        $sort = new Sort([
-            'attributes' => [
-                'denom' => [
-                    'label' => 'Denominación',
-                ],
-            ],
-        ]);
     
-        $filas = $generosSearch->search(
-            Yii::$app->request->queryParams,
-            $pagination,
-            $sort
-        );
+        $dataProvider = $generosSearch->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'filas' => $filas,
+            'dataProvider' => $dataProvider,
             'generosSearch' => $generosSearch,
-            'pagination' => $pagination,
-            'sort' => $sort,
         ]);
     }
 
