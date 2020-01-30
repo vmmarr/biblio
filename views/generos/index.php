@@ -16,14 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $generosSearch,
         'columns' => [
-            'id:currency',
             'denom',
-            'created_at:relativetime',
-            [
-                'attribute' => 'created_at',
-                'format' => 'datetime',
-                'label' => 'Fecha alta',
-            ],
+            'created_at:datetime:Fecha alta',
+            'total',
             ['class' => ActionColumn::class],
         ],
     ]) ?>

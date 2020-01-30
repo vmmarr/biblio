@@ -23,7 +23,10 @@ class GenerosSearch extends Generos
 
     public function search($params)
     {
-        $query = Generos::find();
+        $query = Generos::find()
+            ->select(['generos.*', 'COUNT(l.id) AS total'])
+            ->joinWith('libros l')
+            ->groupBy('generos.id');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

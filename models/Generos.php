@@ -15,6 +15,8 @@ use Yii;
  */
 class Generos extends \yii\db\ActiveRecord
 {
+    public $total;
+
     /**
      * {@inheritdoc}
      */
@@ -32,7 +34,13 @@ class Generos extends \yii\db\ActiveRecord
             [['denom'], 'required'],
             [['denom'], 'string', 'max' => 255],
             [['denom'], 'unique'],
+            [['total'], 'safe'],
         ];
+    }
+
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['total']);
     }
 
     /**
