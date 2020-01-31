@@ -33,6 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'isbn',
             'titulo',
             'num_pags',
+            'genero_id',
+            'created_at',
         ],
     ]) ?>
 

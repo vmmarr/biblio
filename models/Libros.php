@@ -12,6 +12,7 @@ use Yii;
  * @property string $titulo
  * @property int|null $num_pags
  * @property int $genero_id
+ * @property string $created_at
  *
  * @property Generos $genero
  */
@@ -34,6 +35,7 @@ class Libros extends \yii\db\ActiveRecord
             [['isbn', 'titulo', 'genero_id'], 'required'],
             [['num_pags', 'genero_id'], 'default', 'value' => null],
             [['num_pags', 'genero_id'], 'integer'],
+            [['created_at'], 'safe'],
             [['isbn'], 'string', 'max' => 13],
             [['titulo'], 'string', 'max' => 255],
             [['isbn'], 'unique'],
@@ -52,6 +54,7 @@ class Libros extends \yii\db\ActiveRecord
             'titulo' => 'Titulo',
             'num_pags' => 'Num Pags',
             'genero_id' => 'Genero ID',
+            'created_at' => 'Created At',
         ];
     }
 

@@ -9,13 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string $denom
- * @property string $created_at 
+ * @property string $created_at
  *
  * @property Libros[] $libros
  */
 class Generos extends \yii\db\ActiveRecord
 {
-    public $total;
+    private $_total = null;
 
     /**
      * {@inheritdoc}
@@ -32,15 +32,10 @@ class Generos extends \yii\db\ActiveRecord
     {
         return [
             [['denom'], 'required'],
+            [['created_at'], 'safe'],
             [['denom'], 'string', 'max' => 255],
             [['denom'], 'unique'],
-            [['total'], 'safe'],
         ];
-    }
-
-    public function attributes()
-    {
-        return array_merge(parent::attributes(), ['total']);
     }
 
     /**
@@ -50,9 +45,22 @@ class Generos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'denom' => 'Denominación',
-            'created_at' => 'Fecha de creación',
+            'denom' => 'Denom',
+            'created_at' => 'Created At',
         ];
+    }
+
+    public function setTotal($total)
+    {
+        $this->_total = $total;
+    }
+
+    public function getTotal()
+    {
+        if ($this->_total === null && !$this->isNewRecord) {
+            $this->setTotal($this->getLibros()->count());
+        }
+        return $this->_total;
     }
 
     /**
@@ -61,5 +69,13 @@ class Generos extends \yii\db\ActiveRecord
     public function getLibros()
     {
         return $this->hasMany(Libros::className(), ['genero_id' => 'id'])->inverseOf('genero');
+    }
+
+    public static function findWithTotal()
+    {
+        return static::find()
+            ->select(['generos.*', 'COUNT(l.id) AS total'])
+            ->joinWith('libros l', false)
+            ->groupBy('generos.id');
     }
 }

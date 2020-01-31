@@ -30,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'isbn',
             'titulo',
             'num_pags',
+            'genero_id',
             'genero.denom',
+            //'created_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
