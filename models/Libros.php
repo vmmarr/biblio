@@ -51,10 +51,10 @@ class Libros extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'isbn' => 'Isbn',
-            'titulo' => 'Titulo',
-            'num_pags' => 'Num Pags',
-            'genero_id' => 'Genero ID',
-            'created_at' => 'Created At',
+            'titulo' => 'Título',
+            'num_pags' => 'Núm. Pags.',
+            'genero_id' => 'Género ID',
+            'created_at' => 'Fecha de alta',
         ];
     }
 
