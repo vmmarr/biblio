@@ -17,6 +17,10 @@ use yii\web\IdentityInterface;
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const SCENARIO_CREAR = 'crear';
+
+    public $password_repeat;
+
     /**
      * {@inheritdoc}
      */
@@ -32,8 +36,12 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['nombre', 'password'], 'required'],
+            [['nombre'], 'unique'],
             [['nombre', 'auth_key', 'telefono', 'poblacion'], 'string', 'max' => 255],
             [['password'], 'string', 'max' => 60],
+            [['password_repeat'], 'required', 'on' => self::SCENARIO_CREAR],
+            // [['password'], 'compare'],
+            [['password_repeat'], 'compare', 'compareAttribute' => 'password'],
         ];
     }
 
@@ -45,7 +53,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
-            'password' => 'Password',
+            'password' => 'Contraseña',
+            'password_repeat' => 'Repetir contraseña',
             'auth_key' => 'Auth Key',
             'telefono' => 'Teléfono',
             'poblacion' => 'Población',
@@ -84,5 +93,22 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function validatePassword($password)
     {
         return Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        if ($insert) {
+            if ($this->scenario === self::SCENARIO_CREAR) {
+                $security = Yii::$app->security;
+                $this->auth_key = $security->generateRandomString();
+                $this->password = $security->generatePasswordHash($this->password);
+            }
+        }
+
+        return true;
     }
 }
