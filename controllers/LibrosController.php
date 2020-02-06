@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Libros;
 use app\models\LibrosSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,6 +25,28 @@ class LibrosController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                // 'only' => ['index'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'update'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rules, $action) {
+                            return Yii::$app->user->identity->nombre === 'manolo';
+                        },
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view', 'delete'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rules, $action) {
+                            return Yii::$app->user->identity->nombre === 'pepe';
+                        },
+                    ],
                 ],
             ],
         ];
