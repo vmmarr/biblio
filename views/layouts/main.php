@@ -43,6 +43,8 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Libros', 'url' => ['libros/index']],
+            ['label' => 'Lectores', 'url' => ['lectores/index']],
+            ['label' => 'Préstamos', 'url' => ['prestamos/index']],
             ['label' => 'Géneros', 'url' => ['generos/index']],
             [
                 'label'=> 'Usuarios',
