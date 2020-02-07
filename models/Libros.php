@@ -80,4 +80,16 @@ class Libros extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Lectores::class, ['id' => 'lector_id'])->via('prestamos');
     }
+
+    public function getEstaPrestado()
+    {
+        return $this->getPrestamos()
+            ->andOnCondition(['devolucion' => null])
+            ->exists();
+    }
+
+    public static function lista()
+    {
+        return static::find()->select('titulo')->indexBy('id')->column();
+    }
 }

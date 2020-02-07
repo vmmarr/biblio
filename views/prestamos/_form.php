@@ -10,20 +10,16 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="prestamos-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'create-prestamos-form',
+        'enableAjaxValidation' => true,
+    ]); ?>
+        <?= $form->field($model, 'libro_id')->label('Libro')->dropDownList($libros) ?>
+        <?= $form->field($model, 'lector_id')->label('Lector')->dropDownList($lectores) ?>
 
-    <?= $form->field($model, 'libro_id')->textInput() ?>
-
-    <?= $form->field($model, 'lector_id')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'devolucion')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
-
+        <div class="form-group">
+            <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        </div>
     <?php ActiveForm::end(); ?>
 
 </div>

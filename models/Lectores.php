@@ -83,4 +83,9 @@ class Lectores extends \yii\db\ActiveRecord
                 $query->andWhere(['devolucion' => null]);
             });
     }
+
+    public static function lista()
+    {
+        return static::find()->select('nombre')->indexBy('id')->column();
+    }
 }
