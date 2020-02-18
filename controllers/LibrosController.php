@@ -100,6 +100,16 @@ class LibrosController extends Controller
         ]);
     }
 
+    public function actionCorreo()
+    {
+        Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['smtpUsername'])
+            ->setTo('Vulaced38@einrot.com')
+            ->setSubject('Este es el asunto del mensaje')
+            ->setTextBody('Este es el cuerpo del mensaje')
+            ->send();
+    }
+
     public function actionImagen($id)
     {
         $model = new ImagenForm();
