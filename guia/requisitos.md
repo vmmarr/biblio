@@ -352,6 +352,15 @@
 | **Entrega**     | v1             |
 | **Incidencia**  | [39](https://github.com/ricpelo/biblio/issues/39) |
 
+| **R40**     | **Provincia obligatoria**         |
+| --------------: | :------------------- |
+| **Descripción** | La provincia del lector debe ser obligatoria             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Información                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+| **Incidencia**  | [41](https://github.com/ricpelo/biblio/issues/41) |
+
 
 ## Cuadro resumen
 
@@ -396,3 +405,4 @@
 | (**R37**) Despliegue en un Host | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [37](https://github.com/ricpelo/biblio/issues/37) |
 | (**R38**) Despliegue en un servidor local | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [38](https://github.com/ricpelo/biblio/issues/38) |
 | (**R39**) Población obligatoria | Importante | Información | Fácil | v1 | | **Incidencia**  | [39](https://github.com/ricpelo/biblio/issues/39) |
+| (**R40**) Provincia obligatoria | Importante | Información | Fácil | v1 | | **Incidencia**  | [41](https://github.com/ricpelo/biblio/issues/41) |
