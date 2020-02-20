@@ -33,7 +33,7 @@ CREATE TABLE lectores
   , nombre     varchar(255) NOT NULL
   , direccion  varchar(255)
   , poblacion  varchar(255) NOT NULL
-  , provincia  varchar(255)
+  , provincia  varchar(255) NOT NULL
   , cod_postal numeric(5)
   , fecha_nac  date
   , created_at timestamp(0) NOT NULL DEFAULT current_timestamp
