@@ -36,7 +36,7 @@ class Lectores extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['numero', 'nombre', 'poblacion'], 'required'],
+            [['numero', 'nombre', 'poblacion', 'provincia'], 'required'],
             [['cod_postal'], 'number'],
             [['fecha_nac', 'created_at'], 'safe'],
             [['numero'], 'string', 'max' => 9],
