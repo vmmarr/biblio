@@ -53,6 +53,9 @@ $config = [
         'formatter' => [
             'timeZone' => 'Europe/Madrid',
         ],
+        'session' => [
+            'class' => yii\web\DbSession::class,
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
