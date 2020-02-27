@@ -1,5 +1,6 @@
 <?php
 
+use kartik\datecontrol\DateControl;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 
@@ -20,7 +21,15 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'genero_id')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'created_at')->widget(DateControl::class, [
+        'type' => 'date',
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'php:d-m-Y H:i:s',
+            ],
+        ],
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
