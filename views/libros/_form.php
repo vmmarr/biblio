@@ -2,7 +2,10 @@
 
 use kartik\datecontrol\DateControl;
 use yii\bootstrap4\Html;
+use kartik\icons\FontAwesomeAsset;
 use yii\bootstrap4\ActiveForm;
+
+FontAwesomeAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */

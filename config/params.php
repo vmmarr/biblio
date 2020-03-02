@@ -11,7 +11,7 @@ return [
     'dateControlDisplay' => [
         Module::FORMAT_DATE => 'php:d-m-Y',
         Module::FORMAT_TIME => 'php:H:i:s',
-        Module::FORMAT_DATETIME => 'php:d-m-Y H:i:s', 
+        Module::FORMAT_DATETIME => 'php:d-m-Y H:i:s',
     ],
 
     // format settings for saving each date attribute (PHP format example)

@@ -78,7 +78,6 @@ $config = [
         'datecontrol' =>  [
             'class' => kartik\datecontrol\Module::class,
             'displayTimezone' => 'Europe/Madrid',
-            'saveTimezone' => 'UTC',
         ],
     ],
 ];
