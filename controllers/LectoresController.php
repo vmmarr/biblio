@@ -2,12 +2,17 @@
 
 namespace app\controllers;
 
+use app\models\Codpostales;
 use Yii;
 use app\models\Lectores;
 use app\models\LectoresSearch;
+use app\models\Poblaciones;
+use app\models\Provincias;
+use yii\bootstrap4\ActiveForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * LectoresController implements the CRUD actions for Lectores model.
@@ -66,6 +71,11 @@ class LectoresController extends Controller
     {
         $model = new Lectores();
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -123,5 +133,17 @@ class LectoresController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionRellenar($codpostal_id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $cp = Codpostales::findOne(['id' => $codpostal_id])->poblacion_id;
+        $pueblo = Poblaciones::findOne(['id' => $cp]);
+        $provincia = Provincias::findOne(['id' => $pueblo->provincia_id]);
+        return array_merge([$pueblo->nombre], [$provincia->nombre]);
+
+
+        // return array_merge();
     }
 }
