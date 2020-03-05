@@ -22,7 +22,7 @@ FontAwesomeAsset::register($this);
 
     <?= $form->field($model, 'num_pags')->textInput() ?>
 
-    <?= $form->field($model, 'genero_id')->textInput() ?>
+    <?= $form->field($model, 'genero_id')->dropDownList($generos) ?>
 
     <?= $form->field($model, 'created_at')->widget(DateControl::class, [
         'type' => 'date',
