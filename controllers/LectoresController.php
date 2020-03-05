@@ -142,5 +142,11 @@ class LectoresController extends Controller
         $pueblo = Poblaciones::findOne(['id' => $cp]);
         $provincia = Provincias::findOne(['id' => $pueblo->provincia_id]);
         return array_merge([$pueblo->nombre], [$provincia->nombre]);
+<<<<<<< HEAD
+=======
+
+
+        // return array_merge();
+>>>>>>> 24368932c8047e91ba7063d76064a6195e548358
     }
 }
